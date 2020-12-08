@@ -1,0 +1,17 @@
+.home {
+    min-height: 100vh;
+    background-color: #ECEFF1;
+}
+
+.containerImage {
+    margin: 100px 0 0 0;
+}
+
+.containerBot {
+    margin: 100px 0 0 0;
+    padding: 0;
+}
+
+.primeRow {
+    height: 500px;
+}

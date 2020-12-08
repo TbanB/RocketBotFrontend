@@ -1,0 +1,46 @@
+  <v-card
+    class="mx-auto card"
+    color="#263238"
+    dark
+    width="100%"
+  >
+    <v-card-title>
+      <v-list-item class="grow">
+        <v-list-item-avatar color="grey darken-3">
+          <v-img
+            class="elevation-6"
+            :src="avatar"
+          ></v-img>
+        </v-list-item-avatar>
+
+        <v-list-item-content>
+          <v-list-item-title>{{botName}}</v-list-item-title>
+        </v-list-item-content>
+
+      
+      </v-list-item>
+    </v-card-title>
+
+    <v-card-text class="headline font-weight-bold">
+      {{botDialog}}
+    </v-card-text>
+
+    <v-card-actions class="cardActions">
+      <v-spacer></v-spacer>
+      <v-btn
+        color="orange"
+        text
+        v-on:click="confirmAction"
+      >
+        Yes
+      </v-btn>
+
+      <v-btn
+        color="orange"
+        text
+        v-on:click="rejectAction"
+      >
+        No
+      </v-btn>
+    </v-card-actions>
+  </v-card>
