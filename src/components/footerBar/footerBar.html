@@ -1,0 +1,29 @@
+  <v-footer
+    dark
+    padless
+  >
+    <v-card
+      class="flex blue-grey darken-4"
+      flat
+      tile
+    >
+      <v-card-title class="justify-center">
+        <v-btn
+          v-for="icon in icons"
+          :key="icon.img"
+          :href="icon.path"
+          class="mx-4"
+          dark
+          icon
+        >
+          <v-icon size="24px">
+            {{ icon.img }}
+          </v-icon>
+        </v-btn>
+      </v-card-title>
+
+      <v-card-text class="py-2 white--text text-center">
+        {{ new Date().getFullYear() }} — <strong>TEST PROJECT</strong>
+      </v-card-text>
+    </v-card>
+  </v-footer>

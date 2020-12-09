@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Component from 'vue-class-component';
-import { mapActions, mapState } from 'vuex';
 import { Watch } from 'vue-property-decorator';
+import { mapActions, mapState } from 'vuex';
 
 
 @Component({
     methods: {
-        ...mapActions('bots', ['getRocketPicture'])
+        ...mapActions('bots', ['getRocketPicture', 'sendUserInput'])
     },
     computed: {
-        ...mapState('bots', ['picture'])
+        ...mapState('bots', ['picture', 'questionTime', 'frames'])
     }
 })
 class BotContainer extends Vue {
@@ -17,21 +17,37 @@ class BotContainer extends Vue {
     botName = "Nombre del bot"
     botDialog = "dialogo del bot"
     userInput = ''
+    disabledSend = true
+    currentFrame = 0
+
+    currentFrame () {
+        this.currentFrame = 1
+    }
 
 
-    confirmAction () {
+    async confirmAction () {
         console.log('entra confirmAction')
+        await this.sendUserInput()
         this.getRocketPicture()
     }
 
-    rejectAction () {
+    async rejectAction () {
         console.log('entra rejectAction')
+        await this.sendUserInput()
+        this.getRocketPicture()
     }
 
+    async sendInput () {
+        let payload = {
+            user_input: this.userInput,
+
+        }
+        await this.sendUserInput(payload)
+    }
 
     @Watch('userInput')
-    loadingContainerImg () {
-        console.log(this.userInput)
+    userInputWatcher () {
+        this.disabledSend = this.userInput === '' ? true : false
     }
 }
 

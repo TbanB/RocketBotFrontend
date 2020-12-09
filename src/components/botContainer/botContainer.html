@@ -30,6 +30,7 @@
           cols="12"
         >
           <v-textarea
+            v-if="!questionTime"
             label="..."
             v-model="userInput"
             auto-grow
@@ -43,20 +44,32 @@
 
     <v-card-actions class="cardActions">
       <v-spacer></v-spacer>
-      <v-btn
+      <div v-if="questionTime">
+        <v-btn
         color="orange"
         text
         v-on:click="confirmAction"
-      >
-        Yes
-      </v-btn>
+        >
+          Yes
+        </v-btn>
 
-      <v-btn
+        <v-btn
+          color="orange"
+          text
+          v-on:click="rejectAction"
+        >
+          No
+        </v-btn>
+      </div>
+      <div v-else>
+        <v-btn
         color="orange"
         text
-        v-on:click="rejectAction"
-      >
-        No
-      </v-btn>
+        v-on:click="sendInput"
+        :disabled="disabledSend"
+        >
+          Send
+        </v-btn>
+      </div>
     </v-card-actions>
   </v-card>

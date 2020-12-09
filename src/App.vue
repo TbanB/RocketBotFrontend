@@ -2,6 +2,7 @@
   <v-app>
     <navbar/>
     <router-view/>
+    <footerBar/>
   </v-app>
 </template>
 
@@ -14,12 +15,14 @@
 
 <script>
 import navbar from './components/navbar/navbar.vue';
+import footerBar from './components/footerBar/footerBar.vue';
 
 export default {
   name: 'App',
 
   components: {
     navbar,
+    footerBar,
   },
 };
 </script>
