@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Component from 'vue-class-component';
 import { mapActions, mapState } from 'vuex';
+import { Watch } from 'vue-property-decorator';
 
 
 @Component({
@@ -15,6 +16,7 @@ class BotContainer extends Vue {
     avatar = "https://p7.hiclipart.com/preview/181/1015/787/rocket-drawing-clip-art-vector-material-cartoon-rocket.jpg";
     botName = "Nombre del bot"
     botDialog = "dialogo del bot"
+    userInput = ''
 
 
     confirmAction () {
@@ -24,6 +26,12 @@ class BotContainer extends Vue {
 
     rejectAction () {
         console.log('entra rejectAction')
+    }
+
+
+    @Watch('userInput')
+    loadingContainerImg () {
+        console.log(this.userInput)
     }
 }
 
