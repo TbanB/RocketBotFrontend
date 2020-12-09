@@ -1,11 +1,34 @@
-import Vue from 'vue'
-import Component from 'vue-class-component'
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import { mapActions, mapState } from 'vuex';
+import { Watch } from 'vue-property-decorator';
 
 
-@Component
+@Component({
+    computed:{
+        ...mapState('bots', ['loading', 'picture', 'loadingImg']),
+    },
+    methods: {
+        ...mapActions('bots',['getRocketPicture'])
+    }
+})
 class ImageContainer extends Vue {
+    imageUrl = ''
+    loading = this.loading
 
-    imageUrl = "http://framex-dev.wadrid.net/api/video/Falcon%20Heavy%20Test%20Flight%20(Hosted%20Webcast)-wbSwFU6tY1c/frame/500/"
+    async created () {
+        this.imageUrl = this.loadingImg
+        await this.getRocketPicture()
+    }
+
+    @Watch('loading')
+    loadingContainerImg () {
+        if (this.loading === true) {
+            this.imageUrl = this.loadingImg
+        } else {
+            this.imageUrl = this.picture
+        }
+    }
 }
 
 export default ImageContainer;
